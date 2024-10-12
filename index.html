@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroNest Software Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #000;
+    box-sizing: border-box;
+    padding-top: 50px; /* To account for the fixed header */
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Header Section */
+.header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .logo img {
+    max-width: 100px;
+    max-height: 80px;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s;
+}
+ /* Hover Effect with Underline */
+ .nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #00b4ff;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
+}
+
+/* On Hover, Show the Line */
+.nav a:hover::after {
+    width: 100%;
+}
+
+.nav a:hover {
+    color: #00b4ff;
+}
+
+/* Contact Info */
+.contact-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.contact-info span {
+    color: #fff;
+}
+
+.contact-info a {
+    color: #00b4ff;
+    text-decoration: none;
+}
+
+/* Main Banner Section */
+
+.banner {
+    background: url('https://i0.wp.com/hdzcladding.com/wp-content/uploads/2021/01/building_04.jpg?resize=1024%2C577&ssl=1') no-repeat center center/cover;
+    height: 80vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 70px; 
+}
+
+.banner:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Keeps text visible */
+}
+
+.banner-content {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    padding: 20px;
+}
+
+.banner-content h1 {
+    font-size: 2.5em; 
+    font-weight: bold;
+    margin-bottom: 15px; 
+    color: #fff;
+}
+
+.quote-button {
+    background-color: #00b4ff;
+    border: none;
+    padding: 12px 25px; 
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+.quote-button:hover {
+    background-color: #0088cc;
+}
+
+/* Service Cards Section */
+.services {
+    display: flex;
+    justify-content: center;
+    gap: 15px; 
+    padding: 40px 20px; 
+    background-color: #e9cfcf;
+    margin-top: -40px; 
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px; 
+    width: 160px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); 
+}
+
+.service-card.active {
+    background-color: #00b4ff;
+    color: #fff;
+}
+
+.service-card h3 {
+    margin: 12px 0; 
+    font-size: 1em;
+}
+
+.service-card p {
+    font-size: 0.85em; 
+}
+
+.service-card .icon {
+    font-size: 1.8em; 
+    margin-bottom: 8px;
+}
+
+ /* Why Choose Us Section */
+ .why-choose-us {
+    text-align: center;
+    padding: 2em;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.why-choose-us h2 {
+    font-size: 2em;
+    margin-bottom: 1.5em;
+    color: #333;
+}
+
+.choose-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5em;
+}
+
+.choose-tabs span {
+    cursor: pointer;
+    padding: 1em 2em;
+    margin: 0 1em;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    color: #555;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.choose-tabs span.active {
+    background-color: #007BFF;
+    color: white;
+}
+
+.choose-tabs span:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.choose-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.choose-image {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.choose-image:hover {
+    transform: scale(1.05);
+}
+
+.choose-text {
+    max-width: 500px;
+    text-align: left;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.choose-text p {
+    margin: 0;
+}
+
+.choose-text p.sc {
+    font-weight: bold;
+    color: #333;
+}
+ 
+ /* Image and Text Section */
+ .image-text-section {
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-start;
+     margin: 0 13%;
+     padding: 18px 0;
+     flex-wrap: wrap;
+ }
+ 
+ .image-box {
+     flex: 1;
+     padding-right: 5px; 
+ }
+ 
+ .image-box img {
+     width: 100%;
+     max-width: 350px;
+     height: auto;
+     border-radius: 10px;
+ }
+ 
+ .text-box {
+     flex: 1;
+     padding-left: 5px; 
+ }
+ 
+ .text-box p {
+     font-size: 20px;
+     font-weight: 100;
+     margin-bottom: 25px;
+ }
+ 
+ /* Ensure contrast for the text  !! */
+ .text-box {
+     color: var(--text-color);
+ }
+ /* Services Section */
+ .services-container {
+            background-color: #001a3d; 
+            padding: 10px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .services-header h2 {
+            font-size: 36px;
+            font-weight: 600;
+            margin: 20px 0 40px; 
+            line-height: 1.2;
+        }
+
+        .info-box-container {
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+
+        .service-box {
+            flex: 1; 
+            min-width: 250px; 
+            max-width: 300px;
+            text-align: center;
+            border: 1px solid #eed8d8;
+            padding: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            background-color: #002d5c; 
+            margin: 10px; 
+        }
+
+        .service-box img {
+            width: 100%;
+            padding: 10px;
+            height: auto;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .service-box h3 {
+            font-size: 20px;
+            color: #437cd8;
+            margin-bottom: 10px;
+        }
+
+        .service-box p {
+            font-size: 14px;
+            color: whitesmoke;
+        }
+
+        .service-box:hover {
+            background-color: #004080; 
+            transform: translateY(-5px); 
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .services-header h2 {
+                font-size: 28px;
+            }
+
+            .info-box-container {
+                flex-direction: column; 
+                align-items: center; 
+            }
+
+            .service-box {
+                padding: 15px; 
+                min-height: auto; 
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #122547;
+            color: white;
+            padding: 40px 20px;
+            margin-top: auto; 
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            max-width: 300px;
+        }
+
+        .footer-logo img {
+            max-width: 100%;
+        }
+
+        .footer-logo p {
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        /* Social Icons Section */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            
+        }
+
+        .social-icon {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease-in-out;
+
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .facebook {
+            color: #3b5998;
+        }
+
+        .facebook:hover {
+            color: #2d4373;
+        }
+
+        .instagram {
+            color: #e4405f;
+        }
+
+        .instagram:hover {
+            color: #bc2a8d;
+        }
+
+        .whatsapp {
+            color: #25d366;
+        }
+
+        .whatsapp:hover {
+            color: #128c7e;
+        }
+
+        .telegram {
+            color: #0088cc;
+        }
+
+        .telegram:hover {
+            color: #005e8c;
+        }
+
+        /* Footer Links */
+        .footer-links {
+            max-width: 200px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: #1ea0e9;
+        }
+
+        /* Subscribe Section */
+        .subscribe h4 {
+            margin-bottom: 15px;
+        }
+
+        .subscribe p {
+            margin-bottom: 10px;
+        }
+
+        .subscribe form {
+            display: flex;
+        }
+
+        .subscribe input[type="email"] {
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .subscribe button {
+            padding: 10px;
+            background-color: #1ea0e9;
+            border: none;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .subscribe button:hover {
+            background-color: #1487c7;
+        }
+
+        /* Copyright Section */
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        #year {
+            color: #1ea0e9;
+        }
+     
+.micro-company {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.micro-company h2 {
+    font-size: 28px;
+    color: #003d9c;
+    margin-bottom: 20px;
+}
+
+.micro-company .intro-text {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    font-size: 20px;
+    color: #606060;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <img src="MicroNestLogoim.png" alt="MicroNest Solutions Logo">
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="#">OUR WORKS</a></li>
+                <li><a href="Contactpage.html">ABOUT US</a></li>
+                <li><a href="Contactpage.html">CONTACT US</a></li>
+            </ul>
+        </nav>
+        <div class="contact-info">
+            <span>+91 123456789</span>
+        </div>
+    </div>
+</header>
+
+<!-- Main Banner Section -->
+<section class="banner">
+    <div class="banner-content">
+        <h1>A SMALL THING CAN MAKE A BIG CHANGE</h1>
+        <button class="quote-button">BE WITH US</button>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services">
+    <div class="service-card">
+        <div class="icon">🚚</div>
+        <h3>Projects</h3>
+        <p>We create dynamic projects for you.</p>
+    </div>
+    <div class="service-card">
+        <div class="icon">📦</div>
+        <h3>Services</h3>
+        <p>We provide high-quality services with top-notch projects.</p>
+    </div>
+    <div class="service-card">
+        <div class="icon">🌍</div>
+        <h3>Global Reach</h3>
+        <p>Connecting you to international markets.</p>
+    </div>
+</section>
+
+
+ <!-- Image and Text Section -->  
+ <section class="image-text-section">
+     <div class="image-box">
+         <img src="MicroNestLogoim.png" alt="MicroNest" />
+     </div>
+     <div class="text-box">
+         <p>MicroNest Solutions is dedicated to providing the best project solutions. Our experienced team ensures that you build and reach your destination safely and on time.</p>
+         <p>Contact us today to learn more about how we can help your business grow.</p>
+     </div>
+ </section>
+ 
+ <hr />
+
+
+<!-- MicroNest Company Section -->
+<section class="micro-company">
+    <h2>MicroNest Company Overview</h2>
+    <p class="intro-text">At MicroNest Solutions, we pride ourselves on delivering quality projects and shipping services to our clients. Our commitment to excellence sets us apart.</p>
+    
+</section>
+
+
+<!-- Services -->
+<div class="services-container">
+    <div class="services-header">
+        <h2>Our Services</h2>
+    </div>
+    <div class="info-box-container services-grid">
+        <div class="service-box">
+            <img src="service-overview.jpg" alt="MicroNest Service Overview" />
+            <h3>MicroNest Service</h3>
+            <p>Comprehensive freight solutions tailored to your business needs.</p>
+        </div>
+        <div class="service-box">
+            <img src="logistics.jpg" alt="Project Management" />
+            <h3>Project Management</h3>
+            <p>Efficient management of your projects and hosting processes.</p>
+        </div>
+        <div class="service-box">
+            <img src="consulting.jpg" alt="Consulting Services" />
+            <h3>Consulting Services</h3>
+            <p>Expert advice to optimize your hosting strategy.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="MicroNest.png" alt="MicroNest Solutions">
+            <p>MicroNest provides project services to grow your own fate.</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank" class="social-icon facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/yourwhatsappnumber" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://t.me/yourtelegram" target="_blank" class="social-icon telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <h4>Project</h4>
+            <ul>
+                <li><a href="#">Project Cargo</a></li>
+                <li><a href="#">Shipping Agency</a></li>
+                <li><a href="#">Used Container</a></li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4>Outlook</h4>
+            <ul>
+                <li><a href="#">Development</a></li>
+                <li><a href="#">Websites Building</a></li>
+                <li><a href="#">Website Hosting</a></li>
+                <li><a href="#">Google Ratings and Reviews</a></li>
+                <li><a href="#">SEO Services</a></li>
+                <li><a href="#">Careers</a></li>
+            </ul>
+        </div>
+        <div class="subscribe">
+            <h4>Subscribe</h4>
+            <p>Get to know about MicroNest, our updates and all news, straight to your inbox.</p>
+            <form>
+                <input type="email" placeholder="Your Email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy; <span id="year"></span> MicroNest Software Solutions. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Dynamic year for copyright
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
+<script>
+    function showContent(type) {
+        const image = document.getElementById("choose-image");
+        const text = document.getElementById("choose-text");
+
+        // Change content based on the selected tab
+        switch (type) {
+            case 'fast-services':
+                image.src = 'fast-services.jpg'; // Use appropriate image for Fast Services
+                text.innerHTML = '<p class="sc fast-services">We provide fast and efficient services tailored to your needs.</p>';
+                break;
+            case 'reliable-support':
+                image.src = 'reliable-support.jpg'; // Use appropriate image for Reliable Support
+                text.innerHTML = '<p class="sc reliable-support">Our team is available 24/7 to assist you with any inquiries.</p>';
+                break;
+            case 'global-reach':
+                image.src = 'global-reach.jpg'; // Use appropriate image for Global Reach
+                text.innerHTML = '<p class="sc global-reach">Connecting you to global opportunities and markets.</p>';
+                break;
+            default:
+                break;
+        }
+
+        // Update active class on tabs
+        const tabs = document.querySelectorAll('.choose-tabs span');
+        tabs.forEach(tab => {
+            const isActive = tab.getAttribute('onclick').includes(type);
+            tab.classList.toggle('active', isActive);
+            tab.setAttribute('aria-selected', isActive);
+        });
+    }
+</script>
+
+</body>
+</html>

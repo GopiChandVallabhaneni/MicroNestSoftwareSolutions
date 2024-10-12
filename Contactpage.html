@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroNest Software Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background-color: #000;
+            box-sizing: border-box;
+            padding-top: 50px;
+            
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .logo img {
+            max-width: 100px;
+            max-height: 80px;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: #00b4ff;
+        }
+
+        /* Hover Effect with Underline */
+        .nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #00b4ff;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Contact Info on Hover */
+        .contact-info {
+            display: none;
+            position: absolute;
+            background-color: rgba(74, 72, 72, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            top: 50px;
+            right: 10px;
+            color: #00b4ff;
+            z-index: 1001;
+        }
+
+        .nav li:hover .contact-info {
+            display: block;
+        }
+
+        /* Main Banner Section */
+        .banner {
+            background: url('https://i0.wp.com/hdzcladding.com/wp-content/uploads/2021/01/building_04.jpg?resize=1024%2C577&ssl=1') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 70px;
+            /* Compensate for header height */
+        }
+
+        .banner:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .banner-content {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        .banner-content h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #122547;
+            color: white;
+            padding: 40px 20px;
+            margin-top: auto;
+            /* Makes sure the footer stays at the bottom */
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            max-width: 300px;
+        }
+
+        .footer-logo img {
+            max-width: 100%;
+        }
+
+        .footer-logo p {
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        /* Social Icons Section */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+
+        }
+
+        .social-icon {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease-in-out;
+
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .facebook {
+            color: #3b5998;
+        }
+
+        .facebook:hover {
+            color: #2d4373;
+        }
+
+        .instagram {
+            color: #e4405f;
+        }
+
+        .instagram:hover {
+            color: #bc2a8d;
+        }
+
+        .whatsapp {
+            color: #25d366;
+        }
+
+        .whatsapp:hover {
+            color: #128c7e;
+        }
+
+        .telegram {
+            color: #0088cc;
+        }
+
+        .telegram:hover {
+            color: #005e8c;
+        }
+
+        /* Footer Links */
+        .footer-links {
+            max-width: 200px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: #1ea0e9;
+        }
+
+        /* Subscribe Section */
+        .subscribe h4 {
+            margin-bottom: 15px;
+        }
+
+        .subscribe p {
+            margin-bottom: 10px;
+        }
+
+        .subscribe form {
+            display: flex;
+        }
+
+        .subscribe input[type="email"] {
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .subscribe button {
+            padding: 10px;
+            background-color: #1ea0e9;
+            border: none;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .subscribe button:hover {
+            background-color: #1487c7;
+        }
+
+        /* Copyright Section */
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        #year {
+            color: #1ea0e9;
+        }
+
+        .micro-company {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .micro-company h2 {
+            font-size: 28px;
+            color: #003d9c;
+            margin-bottom: 20px;
+        }
+
+        .micro-company .intro-text {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 20px;
+            color: #606060;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="MicroNestLogoim.png" alt="MicroNest Solutions Logo">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                <li><a href="#">OUR WORKS</a></li>
+                <li><a href="#">ABOUT US</a></li>
+                    <li>
+                        <a href="#">CONTACT US</a>
+                        <div class="contact-info">
+                            <a href="tel:+91 123456789">Phone: +91 123456789</a><br>
+                            <a href="mailto:micronestsoftwaresolutions@gmail.com">Email: micronestsoftwaresolutions@gmail.com</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="banner">
+        <div class="banner-content">
+            <h1>Welcome to MicroNest Software</h1>
+        </div>
+    </div>
+
+    <section class="micro-company">
+        <h2>About Us</h2>
+        <p class="intro-text">We provide innovative software solutions tailored to your business needs.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="MicroNest.png" alt="MicroNest Solutions">
+                <p>MicroNest provides project services to grow your own fate.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank" class="social-icon facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/yourwhatsappnumber" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://t.me/yourtelegram" target="_blank" class="social-icon telegram"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Project</h4>
+                <ul>
+                    <li><a href="#">Project Cargo</a></li>
+                    <li><a href="#">Shipping Agency</a></li>
+                    <li><a href="#">Used Container</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Outlook</h4>
+                <ul>
+                    <li><a href="#">Development</a></li>
+                    <li><a href="#">Websites Building</a></li>
+                    <li><a href="#">Website Hosting</a></li>
+                    <li><a href="#">Google Ratings and Reviews</a></li>
+                    <li><a href="#">SEO Services</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="subscribe">
+                <h4>Subscribe</h4>
+                <p>Get to know about MicroNest, our updates and all news, straight to your inbox.</p>
+                <form>
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; <span id="year"></span> MicroNest Software Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
